@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import  { FoodItem} from './FoodItem'
 import { ItemOnMap } from '../item-on-map/item-on-map'
-import { LocalFoodService } from './list.service';
+import { LocalFoodService } from './local-list.service';
 
 @Component({
   selector: 'page-local-foods',

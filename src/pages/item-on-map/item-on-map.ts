@@ -2,15 +2,12 @@
  * Created by thanhnt on 7/9/2017.
  */
 import {
-  GoogleMaps,
   GoogleMap,
   GoogleMapsEvent,
   GoogleMapOptions,
-  MarkerOptions,
-  Marker
 } from '@ionic-native/google-maps';
 
-import {Component, OnInit} from '@angular/core'
+import {Component} from '@angular/core'
 
 import { Platform, NavController, NavParams} from 'ionic-angular';
 
@@ -23,13 +20,11 @@ import { LocationDetails } from '../location-details/location-details'
 
 //http://arielfaur.github.io/ionic-pullup/
 import { IonPullUpFooterState } from 'ionic-pullup';
-import { _loadViewForSegment } from 'ionic-angular/umd/navigation/deep-linker';
+//import { _loadViewForSegment } from 'ionic-angular/umd/navigation/deep-linker';
+
 import _ from 'lodash';
 
-
 declare var google: any;
-
-
 
 @Component({
   selector : 'item-on-map',
@@ -63,7 +58,7 @@ export class ItemOnMap{
 
     footerState: IonPullUpFooterState;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private googleMaps: GoogleMaps, private platform : Platform,
+    constructor(public navCtrl: NavController, public navParams: NavParams, private platform : Platform,
                 private geolocation: Geolocation, private loadingCtrl: LoadingController, private storage: Storage) {
 
       this.footerState = IonPullUpFooterState.Collapsed;
@@ -77,8 +72,8 @@ export class ItemOnMap{
 
       this.platform.ready().then(() => {
 
+        /*
           var elem = document.getElementById('googleMaps');
-          /*
           if(elem == null) {
             // not exists.
             let script = document.createElement("script");
@@ -219,12 +214,12 @@ export class ItemOnMap{
 
           this.loadMap(lat, lng);
 
-          var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-          var beachMarker = new google.maps.Marker({
-            position: {lat: lat, lng: lng},
-            map: this.map,
-            icon: image
-          });
+          // var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+          // var beachMarker = new google.maps.Marker({
+          //   position: {lat: lat, lng: lng},
+          //   map: this.map,
+          //   icon: image
+          // });
 
         });
       });
@@ -301,7 +296,7 @@ export class ItemOnMap{
       //https://github.com/ionic-team/ng-cordova/issues/743
       //adding permissions in AndroidManifest.xml worked for me...
       this.geolocation.getCurrentPosition(options)
-      .then((location) => {
+      .then(location => {
           //https://developers.google.com/maps/documentation/javascript/reference#LatLng
 
           var lat = location.coords.latitude;
@@ -328,8 +323,7 @@ export class ItemOnMap{
           }
           */
         }
-      ).catch(
-        (error) => {
+      ).catch(error => {
           console.log("geolocation getCurrentPosition has error");
           console.log(error);
           //loader.dismiss();
@@ -337,7 +331,7 @@ export class ItemOnMap{
       );
 
       let watch = this.geolocation.watchPosition();
-      watch.subscribe((data) => {
+      watch.subscribe(data => {
         // data can be a set of coordinates, or an error (if an error occurred).
         console.log(data + " from watch");
 

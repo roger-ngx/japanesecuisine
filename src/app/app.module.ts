@@ -13,7 +13,7 @@ import { ListService } from '../pages/list/list.service';
 import { ItemOnMap } from '../pages/item-on-map/item-on-map';
 import { LocationDetails } from '../pages/location-details/location-details'
 import { LocalFoodPage } from '../pages/local-food/local-food';
-import { LocalFoodService } from '../pages/local-food/list.service';
+import { LocalFoodService } from '../pages/local-food/local-list.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
