@@ -16,7 +16,7 @@ export class ListService {
 
     constructor(private http: Http, private geolocation: Geolocation, private storage: Storage) { }
 
-    public getFoodItems(): Promise<FoodItem[]> {
+    public getFoodItems(): Promise<any> {
       return this.http.get(this.itemsUrl)
         .toPromise()
         .then(
@@ -25,7 +25,7 @@ export class ListService {
         );
     }
 
-    public getFoodImage(itemName, position): firebase.Promise<any>{
+    public getFoodImage(itemName, position){
 
       return firebase.storage().ref().child('japanese_foods/' + itemName + '.jpg')
             .getDownloadURL()
@@ -33,8 +33,7 @@ export class ListService {
                 //url => url + "|!@#|" + position;
                 url => this.handleDownloadUrl(url, position)
              )
-            .catch((err : Error) =>
-            {
+            .catch((err : Error) => {
               console.log('getDownloadURL Error:' + err.message);
             });
     }

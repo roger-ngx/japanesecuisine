@@ -16,7 +16,7 @@ export class LocalFoodService {
 
     constructor(private http: Http, private geolocation: Geolocation, private storage: Storage) { }
 
-    public getFoodItems(prefectureName): Promise<FoodItem[]> {
+    public getFoodItems(prefectureName) {
       return this.http.get(this.itemsUrl)
         .toPromise()
         .then(
@@ -29,7 +29,7 @@ export class LocalFoodService {
         );
     }
 
-    public getFoodImage(itemName, position): firebase.Promise<any>{
+    public getFoodImage(itemName, position): Promise<any>{
 
       return firebase.storage().ref().child('japan_local_foods/' + itemName + '.jpg')
             .getDownloadURL()

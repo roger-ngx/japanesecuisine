@@ -66,15 +66,15 @@ export class ListPage implements OnInit{
             if(this.loadedPage.indexOf(this.currentPage) == -1) {
               this.loadedPage.push(this.currentPage);
             }
-            for (var i = 0; i < length; i++) {
+            for (let i = 0; i < length; i++) {
               this.listService.getStorageService().get("" + i).then((url) => this.setImageDownloadUrl(url));
             }
             //this.loader.dismiss();
           } else {
 
             this.listService.getStorageService().set("#item", length)
-            for (var i = 0; i < length; i++) {
-              console.log(i + " " + this.foodItems[i].Name);
+            for (let i = 0; i < length; i++) {
+              //console.log(i + " " + this.foodItems[i].Name);
               this.listService.getFoodImage(this.foodItems[i].Name, i).then(url => this.setImageDownloadUrl(url));
             }
             //console.log("get links from firebase");

@@ -23,6 +23,9 @@ import { LocationDetails } from '../location-details/location-details'
 
 //http://arielfaur.github.io/ionic-pullup/
 import { IonPullUpFooterState } from 'ionic-pullup';
+import { _loadViewForSegment } from 'ionic-angular/umd/navigation/deep-linker';
+import _ from 'lodash';
+
 
 declare var google: any;
 
@@ -304,7 +307,7 @@ export class ItemOnMap{
           var lat = location.coords.latitude;
           var lng = location.coords.longitude;
 
-          console.log(lat + " " + lng);
+          console.log(lat, lng);
 
           //update a current location into the local db
           this.storage.set('current_location_lat', lat);
@@ -376,9 +379,7 @@ export class ItemOnMap{
 
           this.setPlace(results);
 
-          for (var i = 0; i < results.length; i++) {
-            this.createMarker(results[i]);
-          }
+          _.forEach(results, result => this.createMarker(result));
         }
         this.loader.dismiss();
     }
